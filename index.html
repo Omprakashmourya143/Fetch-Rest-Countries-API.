@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <script>
+        var res = fetch("https://restcountries.com/v3.1/all")
+res.then((data) => data.json()).then((data1) => foo(data1))
+var container = document.createElement("div")
+container.className = "container"
+var row = document.createElement("div")
+row.className = "row"
+function foo(data1) {
+    console.log(data1);
+    for (var i = 0; i < data1.length; i++) {
+        var col = document.createElement("div")
+        col.className = "col-md-4"
+        col.innerHTML = 
+        `<div class="card mx-4 my-4 border-primary text-center" style="max-width:12rem">
+        <div class="card-header">${data1[i].name.common}</div>
+        <img src="${data1[i].flags.png}" class="card-img" alt="Flags" style="object-fit:contain;width:auto;height:100px">
+    <div class="card-body">
+      <p class="card-text">Capital : ${data1[i].capital} <br> Region : ${data1[i].region} <br> Population : ${data1[i].population}  </p>
+      <a href="#" class="btn btn-primary">Check Weather</a>
+    </div>
+  </div>`
+        row.append(col)
+        container.append(row)
+        document.body.append(container)
+    }
+}
+    </script>
+</body>
+</html>
